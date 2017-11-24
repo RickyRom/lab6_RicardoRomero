@@ -20,8 +20,8 @@ public class Admin_Universo {
     private ArrayList<Universo> listaU = new ArrayList();
     private File archivo = null;
     
-    public Admin_Universo(String path) {
-        archivo = new File(path);
+    public Admin_Universo() {
+        
     }
 
     public ArrayList<Universo> getListaU() {
