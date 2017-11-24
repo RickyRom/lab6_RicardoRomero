@@ -15,6 +15,7 @@ public class seres_vivos {
     private String nombre_planeta;
 
     public seres_vivos() {
+        
     }
 
     public seres_vivos(String nombre_raza, int numero_ki, int numero_max_años, String nombre_planeta) {

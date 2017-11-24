@@ -69,8 +69,8 @@ public class Zeno_Sama extends javax.swing.JFrame {
         eliminar_seres = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        modificar_servivo1 = new javax.swing.JButton();
-        cb_modificar_seres1 = new javax.swing.JComboBox<>();
+        eliminar_servivo = new javax.swing.JButton();
+        cb_eliminar_seres = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -312,11 +312,11 @@ public class Zeno_Sama extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel14.setText("Seres Vivos");
 
-        modificar_servivo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        modificar_servivo1.setText("Eliminar");
-        modificar_servivo1.addMouseListener(new java.awt.event.MouseAdapter() {
+        eliminar_servivo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        eliminar_servivo.setText("Eliminar");
+        eliminar_servivo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                modificar_servivo1MouseClicked(evt);
+                eliminar_servivoMouseClicked(evt);
             }
         });
 
@@ -328,11 +328,11 @@ public class Zeno_Sama extends javax.swing.JFrame {
                 .addContainerGap(228, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(modificar_servivo1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eliminar_servivo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(258, 258, 258))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cb_modificar_seres1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_eliminar_seres, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14))
                         .addGap(209, 209, 209))))
         );
@@ -342,9 +342,9 @@ public class Zeno_Sama extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel14)
                 .addGap(96, 96, 96)
-                .addComponent(cb_modificar_seres1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cb_eliminar_seres, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83)
-                .addComponent(modificar_servivo1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(eliminar_servivo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(164, Short.MAX_VALUE))
         );
 
@@ -393,6 +393,11 @@ public class Zeno_Sama extends javax.swing.JFrame {
         jMenu1.add(jmi_modificar);
 
         jmi_eliminar.setText("Eliminar Registros de Seres Vivos");
+        jmi_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_eliminarActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmi_eliminar);
 
         jmi_guardar.setText("Guardar los Datos");
@@ -463,7 +468,9 @@ public class Zeno_Sama extends javax.swing.JFrame {
 
             DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_modificar_seres.getModel();
             modelo.addElement(s);
-
+            DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) cb_eliminar_seres.getModel();
+            modelo2.addElement(s);
+            
             jt_nombre_raza.setText("");
             jt_numero_ki.setText("");
             jt_numero_años.setText("");
@@ -486,9 +493,9 @@ public class Zeno_Sama extends javax.swing.JFrame {
         if (cont <= 1) {
             crear_universo.setEnabled(false);
         }
-        
+
         Crear_Universo.dispose();
-        
+
         jmi_agregar.setEnabled(true);
         jmi_modificar.setEnabled(true);
         jmi_eliminar.setEnabled(true);
@@ -528,14 +535,14 @@ public class Zeno_Sama extends javax.swing.JFrame {
             ((seres_vivos) mode.getSelectedItem()).setNumero_max_años(numero_max_años);
             ((seres_vivos) mode.getSelectedItem()).setNombre_planeta(nombre_planeta);
             cb_modificar_seres.setModel(mode);
-            
+
             nombre_raza1.setText("");
             numero_ki1.setText("");
             numero_años1.setText("");
             nombre_planeta1.setText("");
-            
+
             JOptionPane.showMessageDialog(this, "Modificación Exitosa");
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Ocurrió un Error");
@@ -549,9 +556,12 @@ public class Zeno_Sama extends javax.swing.JFrame {
         Crear_Universo.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void modificar_servivo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_servivo1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificar_servivo1MouseClicked
+    private void eliminar_servivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar_servivoMouseClicked
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cb_eliminar_seres.getModel();
+        int i = cb_eliminar_seres.getSelectedIndex();
+        model.removeElementAt(i);
+        u.getSv().remove(i);
+    }//GEN-LAST:event_eliminar_servivoMouseClicked
 
     private void jmi_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_abrirActionPerformed
         JFileChooser jfc = new JFileChooser();
@@ -562,11 +572,19 @@ public class Zeno_Sama extends javax.swing.JFrame {
             au.cargararchivo();
             u = au.getU();
             for (seres_vivos o : u.getSv()) {
+                System.out.println(o.getNombre_raza());
                 DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_modificar_seres.getModel();
                 modelo.addElement(o);
             }
         }
     }//GEN-LAST:event_jmi_abrirActionPerformed
+
+    private void jmi_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminarActionPerformed
+        eliminar_seres.pack();
+        eliminar_seres.setModal(true);
+        eliminar_seres.setLocationRelativeTo(this);
+        eliminar_seres.setVisible(true);
+    }//GEN-LAST:event_jmi_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -607,10 +625,11 @@ public class Zeno_Sama extends javax.swing.JFrame {
     private javax.swing.JButton Agregar_servivo;
     private javax.swing.JDialog Crear_Universo;
     private javax.swing.JDialog agregar_seres;
+    private javax.swing.JComboBox<String> cb_eliminar_seres;
     private javax.swing.JComboBox<String> cb_modificar_seres;
-    private javax.swing.JComboBox<String> cb_modificar_seres1;
     private javax.swing.JButton crear_universo;
     private javax.swing.JDialog eliminar_seres;
+    private javax.swing.JButton eliminar_servivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -645,7 +664,6 @@ public class Zeno_Sama extends javax.swing.JFrame {
     private javax.swing.JTextField jt_numero_ki;
     private javax.swing.JDialog modificar_seres;
     private javax.swing.JButton modificar_servivo;
-    private javax.swing.JButton modificar_servivo1;
     private javax.swing.JTextField nombre_planeta1;
     private javax.swing.JTextField nombre_raza1;
     private javax.swing.JTextField numero_años1;

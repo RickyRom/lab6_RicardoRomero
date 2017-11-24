@@ -51,7 +51,6 @@ public class Admin_Universo {
             fw = new FileWriter(archivo, false);
             bw = new BufferedWriter(fw);
             for (seres_vivos s : u.getSv()) {
-                System.out.println(s.getNombre_raza());
                 bw.write(s.getNombre_raza() + "|");
                 bw.write(s.getNumero_ki() + "|");
                 bw.write(s.getNumero_max_años() + "|");
@@ -72,12 +71,17 @@ public class Admin_Universo {
             
             try {
                 sc = new Scanner(archivo);
-                sc.useDelimiter("|");
+                sc.useDelimiter("\\|");
                 while (sc.hasNext()) {                    
-                    u.getSv().add(new seres_vivos(sc.next(), sc.nextInt(), sc.nextInt(), sc.next()));
+                    seres_vivos s = new seres_vivos();
+                    s.setNombre_raza(sc.next());
+                    s.setNumero_ki(sc.nextInt());
+                    s.setNumero_max_años(sc.nextInt());
+                    s.setNombre_planeta(sc.next());                    
                 }
                 
             } catch (Exception e) {
+                e.printStackTrace();
             }
             sc.close();
         }
