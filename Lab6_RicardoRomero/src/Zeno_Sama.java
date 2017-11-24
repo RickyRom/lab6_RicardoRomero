@@ -66,6 +66,11 @@ public class Zeno_Sama extends javax.swing.JFrame {
         jt_crear_universo = new javax.swing.JTextField();
         crear_universo = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        eliminar_seres = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        modificar_servivo1 = new javax.swing.JButton();
+        cb_modificar_seres1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -301,6 +306,62 @@ public class Zeno_Sama extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel4.setBackground(new java.awt.Color(121, 41, 109));
+        jPanel4.setForeground(new java.awt.Color(72, 20, 61));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel14.setText("Seres Vivos");
+
+        modificar_servivo1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        modificar_servivo1.setText("Eliminar");
+        modificar_servivo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificar_servivo1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(228, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(modificar_servivo1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(258, 258, 258))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cb_modificar_seres1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))
+                        .addGap(209, 209, 209))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel14)
+                .addGap(96, 96, 96)
+                .addComponent(cb_modificar_seres1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addComponent(modificar_servivo1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout eliminar_seresLayout = new javax.swing.GroupLayout(eliminar_seres.getContentPane());
+        eliminar_seres.getContentPane().setLayout(eliminar_seresLayout);
+        eliminar_seresLayout.setHorizontalGroup(
+            eliminar_seresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        eliminar_seresLayout.setVerticalGroup(
+            eliminar_seresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(eliminar_seresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ricky\\OneDrive\\Imágenes\\960x540_outer-space-stars-galaxies-planets-background-images (1).jpg")); // NOI18N
@@ -316,7 +377,6 @@ public class Zeno_Sama extends javax.swing.JFrame {
         jMenu1.add(jMenuItem6);
 
         jmi_agregar.setText("Agregar Seres Vivos");
-        jmi_agregar.setEnabled(false);
         jmi_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_agregarActionPerformed(evt);
@@ -325,7 +385,6 @@ public class Zeno_Sama extends javax.swing.JFrame {
         jMenu1.add(jmi_agregar);
 
         jmi_modificar.setText("Modificar Seres Vivos");
-        jmi_modificar.setEnabled(false);
         jmi_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_modificarActionPerformed(evt);
@@ -334,11 +393,9 @@ public class Zeno_Sama extends javax.swing.JFrame {
         jMenu1.add(jmi_modificar);
 
         jmi_eliminar.setText("Eliminar Registros de Seres Vivos");
-        jmi_eliminar.setEnabled(false);
         jMenu1.add(jmi_eliminar);
 
         jmi_guardar.setText("Guardar los Datos");
-        jmi_guardar.setEnabled(false);
         jmi_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_guardarActionPerformed(evt);
@@ -347,7 +404,11 @@ public class Zeno_Sama extends javax.swing.JFrame {
         jMenu1.add(jmi_guardar);
 
         jmi_abrir.setText("Abrir un Archvivo");
-        jmi_abrir.setEnabled(false);
+        jmi_abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_abrirActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmi_abrir);
 
         jMenuBar1.add(jMenu1);
@@ -420,7 +481,7 @@ public class Zeno_Sama extends javax.swing.JFrame {
         String nombre = jt_crear_universo.getText();
         u = new Universo(nombre);
         jt_crear_universo.setText("");
-
+        au.setU(u);
         cont++;
         if (cont <= 1) {
             crear_universo.setEnabled(false);
@@ -488,6 +549,25 @@ public class Zeno_Sama extends javax.swing.JFrame {
         Crear_Universo.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void modificar_servivo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_servivo1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificar_servivo1MouseClicked
+
+    private void jmi_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_abrirActionPerformed
+        JFileChooser jfc = new JFileChooser();
+        int seleccion = jfc.showOpenDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            File f = jfc.getSelectedFile();
+            au.setArchivo(f);
+            au.cargararchivo();
+            u = au.getU();
+            for (seres_vivos o : u.getSv()) {
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_modificar_seres.getModel();
+                modelo.addElement(o);
+            }
+        }
+    }//GEN-LAST:event_jmi_abrirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -528,12 +608,15 @@ public class Zeno_Sama extends javax.swing.JFrame {
     private javax.swing.JDialog Crear_Universo;
     private javax.swing.JDialog agregar_seres;
     private javax.swing.JComboBox<String> cb_modificar_seres;
+    private javax.swing.JComboBox<String> cb_modificar_seres1;
     private javax.swing.JButton crear_universo;
+    private javax.swing.JDialog eliminar_seres;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -549,6 +632,7 @@ public class Zeno_Sama extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JMenuItem jmi_abrir;
     private javax.swing.JMenuItem jmi_agregar;
     private javax.swing.JMenuItem jmi_eliminar;
@@ -561,6 +645,7 @@ public class Zeno_Sama extends javax.swing.JFrame {
     private javax.swing.JTextField jt_numero_ki;
     private javax.swing.JDialog modificar_seres;
     private javax.swing.JButton modificar_servivo;
+    private javax.swing.JButton modificar_servivo1;
     private javax.swing.JTextField nombre_planeta1;
     private javax.swing.JTextField nombre_raza1;
     private javax.swing.JTextField numero_años1;

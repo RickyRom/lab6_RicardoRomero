@@ -17,20 +17,13 @@ import java.util.Scanner;
  * @author ricky
  */
 public class Admin_Universo {
-    private ArrayList<Universo> listaU = new ArrayList();
+    private Universo u;
     private File archivo = null;
     
     public Admin_Universo() {
         
     }
 
-    public ArrayList<Universo> getListaU() {
-        return listaU;
-    }
-
-    public void setListaU(ArrayList<Universo> listaU) {
-        this.listaU = listaU;
-    }
 
     public File getArchivo() {
         return archivo;
@@ -40,14 +33,15 @@ public class Admin_Universo {
         this.archivo = archivo;
     }
 
-    @Override
-    public String toString() {
-        return "listaU=" + listaU;
+    public Universo getU() {
+        return u;
     }
+
+    public void setU(Universo u) {
+        this.u = u;
+    }
+
     
-    public void setUniverso(Universo u) {
-        this.listaU.add(u);
-    }
     
     public void escribirarchivo() throws IOException{
         FileWriter fw = null;
@@ -56,9 +50,12 @@ public class Admin_Universo {
         try {
             fw = new FileWriter(archivo, false);
             bw = new BufferedWriter(fw);
-            for (Universo u : listaU) {
-                bw.write(u.getNombre() + "|");
-                bw.write(u.getSv() + "|");
+            for (seres_vivos s : u.getSv()) {
+                System.out.println(s.getNombre_raza());
+                bw.write(s.getNombre_raza() + "|");
+                bw.write(s.getNumero_ki() + "|");
+                bw.write(s.getNumero_max_años() + "|");
+                bw.write(s.getNombre_planeta() + "|");
             }
             bw.flush();
         } catch (Exception e) {
@@ -71,13 +68,13 @@ public class Admin_Universo {
         if (archivo.exists()) {
             
             Scanner sc = null;
-            listaU = new ArrayList();
+             u = new Universo(archivo.getName());
             
             try {
                 sc = new Scanner(archivo);
                 sc.useDelimiter("|");
                 while (sc.hasNext()) {                    
-                    listaU.add(new Universo(sc.next()));
+                    u.getSv().add(new seres_vivos(sc.next(), sc.nextInt(), sc.nextInt(), sc.next()));
                 }
                 
             } catch (Exception e) {
