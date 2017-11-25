@@ -72,13 +72,16 @@ public class Admin_Universo {
             try {
                 sc = new Scanner(archivo);
                 sc.useDelimiter("\\|");
+                ArrayList <seres_vivos> s = new ArrayList();
                 while (sc.hasNext()) {                    
-                    seres_vivos s = new seres_vivos();
-                    s.setNombre_raza(sc.next());
-                    s.setNumero_ki(sc.nextInt());
-                    s.setNumero_max_años(sc.nextInt());
-                    s.setNombre_planeta(sc.next());                    
+                    
+                   s.add(new seres_vivos(sc.next(), sc.nextInt(), sc.nextInt(), sc.next()));
+//                    s.setNombre_raza(sc.next());
+//                    s.setNumero_ki(sc.nextInt());
+//                    s.setNumero_max_años(sc.nextInt());
+//                    s.setNombre_planeta(sc.next());                    
                 }
+                 u.setSv(s);
                 
             } catch (Exception e) {
                 e.printStackTrace();

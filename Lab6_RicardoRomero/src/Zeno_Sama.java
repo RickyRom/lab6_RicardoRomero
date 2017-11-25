@@ -81,6 +81,7 @@ public class Zeno_Sama extends javax.swing.JFrame {
         jmi_guardar = new javax.swing.JMenuItem();
         jmi_abrir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         jPanel1.setBackground(new java.awt.Color(121, 41, 109));
         jPanel1.setForeground(new java.awt.Color(72, 20, 61));
@@ -419,6 +420,20 @@ public class Zeno_Sama extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Info Adicional");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem1.setText("Mensaje");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -470,7 +485,7 @@ public class Zeno_Sama extends javax.swing.JFrame {
             modelo.addElement(s);
             DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) cb_eliminar_seres.getModel();
             modelo2.addElement(s);
-            
+
             jt_nombre_raza.setText("");
             jt_numero_ki.setText("");
             jt_numero_años.setText("");
@@ -565,12 +580,20 @@ public class Zeno_Sama extends javax.swing.JFrame {
 
     private void jmi_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_abrirActionPerformed
         JFileChooser jfc = new JFileChooser();
+        Universo u=new  Universo();
+        
         int seleccion = jfc.showOpenDialog(this);
+        File f2= new File(jfc.getSelectedFile().getPath());
+        
         if (seleccion == JFileChooser.APPROVE_OPTION) {
+            u.setF(f2);
+            
             File f = jfc.getSelectedFile();
             au.setArchivo(f);
             au.cargararchivo();
             u = au.getU();
+            u.setF(f2);
+            System.out.println(u);
             for (seres_vivos o : u.getSv()) {
                 System.out.println(o.getNombre_raza());
                 DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_modificar_seres.getModel();
@@ -585,6 +608,14 @@ public class Zeno_Sama extends javax.swing.JFrame {
         eliminar_seres.setLocationRelativeTo(this);
         eliminar_seres.setVisible(true);
     }//GEN-LAST:event_jmi_eliminarActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        JOptionPane.showMessageDialog(this, "Sos Otro Pedo Arles");
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -647,6 +678,7 @@ public class Zeno_Sama extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

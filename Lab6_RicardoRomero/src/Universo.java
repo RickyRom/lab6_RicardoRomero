@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.util.ArrayList;
 
 /*
@@ -13,6 +14,16 @@ import java.util.ArrayList;
  */
 public class Universo {
     private String nombre;
+    private File F;
+
+    public File getF() {
+        return F;
+    }
+
+    public void setF(File F) {
+        this.F = F;
+    }
+    
     ArrayList<seres_vivos> sv = new ArrayList();
 
     public Universo() {
